@@ -176,7 +176,28 @@ keyboardButton.onkeydown = function(){
   keyboardResult.innerHTML = counter;
   counter+= 1;
 
- 
+ var arrOfNumbers = counter.toString().split('');
+ var arrOfString = [];
+
+ for(var i = 0; i < arrOfNumbers.length; i++){
+  var number;
+  switch(arrOfNumbers[i]) {
+    case "1": number = 'one'; break;
+    case "2": number = 'two'; break;
+    case "3": number = 'three'; break;
+    case "4": number = 'four'; break;
+    case "5": number = 'fifth'; break;
+    case "6": number = 'six'; break;
+    case "7": number = 'seven'; break;
+    case "8": number = 'eight'; break;
+    case "9": number = 'nine'; break;
+    case "0": number = 'zero'; break;
+  }
+  arrOfString.push(number);
+ }
+ let result = arrOfString.join(' ');
+ document.querySelector('#keyboardResult').className = 'resultBlock key-colors $(result)';
+ document.querySelector('#keyboardResult').innerHTML = result;
 }
   </script>
 </body>
