@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Forms Task 1</title>
+  <script>
+    /*
+          Завдання:
+         Зробити валідацію форми:
+         1. Логін / Пароль не може бути порожнім
+         2. Паролі повинні збігтися
+         3. Поки не варто що користувач згоден з осіб. угодою – кнопка відправки не активна
+
+         + бонус – те поле, яке не пройшло валідацію підсвічувати червоним.
+                 - яке пройшло – підсвічувати зеленим.
+    */
+
+  document.addEventListener("DOMContentLoaded", function (){
+    var myValidateForm = document.getElementById('MyValidateForm');
+    var agree = document.getElementById('agree');
+    var btn = document.getElementById('submit');
+    myValidateForm.addEventListener('change', function(){
+    
+      // 1
+      if(myValidateForm.login.value.length  == 0) {
+        myValidateForm.login.style.border = '1px solid red';
+        console.log('Error');
+      } else {
+        myValidateForm.login.style.border = '1px solid green';
+        console.log('Ok');
+      };
+
+      if (myValidateForm.pas1.value.length == 0){
+        myValidateForm.pas1.style.border = '1px solid red';
+        console.log('Error');
+      } else {
+        myValidateForm.pas1.style.border = '1px solid green';
+        console.log('Ok');
+      };
+
+      // 2
+      myValidateForm.addEventListener('change', function (e) { console.log('change event', e.target.value); });
+
+      // 3
+      if (agree.checked = true) {
+        btn.disabled = false;
+      }
+    });
+    
+    
+  })  
+   
+
+
+
+
+
+
+
+
+  </script>
+</head>
+<body>
+  <form id="MyValidateForm">
+    <input type="text" name='login' placeholder="Ваш логин" />
+    <input type="password" name='pas1' placeholder="Ваш пароль" />
+    <input type="password" name='pas2' placeholder="Повторите пароль" />
+    <label for="agree">
+      <span>Вы согласны с лицензионым соглашением.</span>
+      <input type="checkbox" id="agree" />
+    </label>
+    <input type="submit" id="submit" value="Отправить" disabled/>
+  </form>
+
+  <style>
+    #MyValidateForm{
+      width: 350px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #MyValidateForm input{
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      padding: 10px 20px;
+    }
+    .error{
+        border: 1px solid red;
+    }
+    .OK{
+        border: 1px solid green;
+    }
+  </style>
+</body>
+</html>
