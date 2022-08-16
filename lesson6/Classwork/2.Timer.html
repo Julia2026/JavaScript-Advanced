@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<body>
+  <div id="countdown"></div>
+  <button id="stopBtn">Click me</button>
+  <button id="resetBtn">Clean</button>
+  <button id="startStandart"> Start from 0 to 30</button>
+  <button id="startFromEnd"> Start from 30 to 0</button>
+
+
+      <!--
+        Створіть лічильник секунд, який починає звіт з 1 і закінчується на 30,
+        також додайте кнопки котрий зупиняють звіт, та запускають його заново та додайте кнопку обнулюючу звіт.
+        Також спробуйте змінити код так, щоб звіт починався з 30 і закінчувався на 1.
+
+       + бонус: Зробити так, щоб на кожен тик (1с/2c) змінювався колір фону. Можна на основі генератора випадкового кольору з попередніх уроків.
+       + бонус: Зробити візуалізацію стрілки, яка йде по колу
+            document.getElementById("myDIV").style.transform = "rotate(7deg)";
+
+       + бонус: Зробити кнопки які вибирають режим, в якому йде відлік - звичайний від 0 до 30 або реверсивний від 30 до 0
+      -->
+      <script>
+      var stopBtn = document.getElementById('stopBtn');
+      var resetBtn =  document.getElementById('resetBtn');
+      var startStandart = document.getElementById('startStandart');
+      var startFromEnd = document.getElementById('startFromEnd');
+      var timeStart = 1;
+      var timer;
+
+      
+      startStandart.addEventListener('click', function(){
+        var downloadTimer = setInterval(function(){
+          if(timeStart >= 30){
+            clearInterval(downloadTimer);
+          } else {
+            document.getElementById("countdown").innerHTML = timeStart + " seconds remaining";
+          }
+          timeStart += 1;
+        }, 1000);
+     
+        stopBtn.addEventListener('click', onClick);
+        function onClick() {
+          timer = clearInterval(timer);
+          timeStart = 0;
+          if (timeStart) {
+            document.getElementById("countdown").textContent = timeStart;
+            timer = setInterval(downloadTimer, 1000);
+          }
+        }
+      
+        resetBtn.addEventListener('click', function(){
+          clearInterval(downloadTimer);
+          timeStart = 0;
+          document.getElementById("countdown").innerHTML = timeStart;
+        });
+      });
+
+      startFromEnd.addEventListener('click', function(){
+        var timeleft = 30;
+        var timer;
+        var downloadTimer = setInterval(function(){
+          if(timeleft <= 0){
+            clearInterval(downloadTimer);
+            document.getElementById("countdown").innerHTML = "Finished";
+          } else {
+            document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+          }
+          timeleft -= 1;
+        }, 1000);
+    
+        stopBtn.addEventListener('click', onClick);
+        function onClick() {
+          timer = clearInterval(timer);
+          timeleft = 30;
+          if (timeStart) {
+            document.getElementById("countdown").textContent = timeleft;
+            timer = setInterval(downloadTimer, 1000);
+          }
+        }
+      
+        resetBtn.addEventListener('click', function(){
+          clearInterval(downloadTimer);
+          timeleft = 30;
+          document.getElementById("countdown").innerHTML = timeleft;
+        });
+      });
+     
+      </script>
+</body>
+</html>
