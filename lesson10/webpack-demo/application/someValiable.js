@@ -1,0 +1,1 @@
+export let changebleString = 'some data is going to be changed';

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="getRequestBtn">Make get request</button>
+    <button id="postRequestBtn">Make post request</button>
+    <br>
+    <br>
+    <br>
+    <form>
+        <label for="userName">
+            <span>User Name</span>
+            <input type="text" id="userName" placeholder="please enter your name">
+        </label>
+        <br>
+        <br>
+        <label for="userEmail">
+            <span>User Email</span>
+            <input type="text" id="userEmail" placeholder="please enter your email">
+        </label>
+        <br>
+        <br>
+        <button id="submitBtn">Send data!</button>
+    </form>
+
+    <script>
+    let submitBtn = document.getElementById('submitBtn');
+    let userName = document.getElementById('userName');
+    let userEmail = document.getElementById('userEmail');
+
+    submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        let userData = {};
+        let enterUserName = userName.value;
+        let enterUserEmail = userEmail.value;
+
+        userData = {
+            name: enterUserName,
+            email: enterUserEmail
+        };
+        
+        fetch('https://js-adv-87cc8-default-rtdb.firebaseio.com/users.json', {
+            method: "POST", 
+            body: JSON.stringify({userData})
+        });
+    });
+/*
+        let getRequestBtn = document.getElementById('getRequestBtn');
+
+        getRequestBtn.addEventListener('click', function(){
+            fetch('https://js-adv-87cc8-default-rtdb.firebaseio.com/users.json')
+                .then(res => res.json())
+                .then(res => console.log(res))
+        });
+
+        let postRequestBtn = document.getElementById('postRequestBtn');
+
+        postRequestBtn.addEventListener('click', function(){
+            fetch('https://js-adv-87cc8-default-rtdb.firebaseio.com/users.json', {
+                method: 'POST',
+                body: JSON.stringify({name: 1, email: 'Textual content'})
+            })
+                .then(res => res.json())
+                .then(res => console.log(res))
+        });
+        */
+
+        
+    </script>
+</body>
+</html>
